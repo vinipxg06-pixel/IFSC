@@ -51,7 +51,7 @@ public class Cliente {
         }
         System.out.println("Cliente encontrado: ");
         clientes.get(posicao).mostrarInformacao();
-    }   
+    }
 
     void atualizarCliente(Cliente cliente) {
         System.out.println("Digite novo nome:");
