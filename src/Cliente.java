@@ -11,7 +11,7 @@ public class Cliente {
     private String cpf;
     private String email;
     private String telefone;
-    private ArrayList<Cliente> clientes;
+
 
     public Cliente(int id, String telefone, String email, String cpf, String nome) {
         this.id = id;
@@ -28,7 +28,7 @@ public class Cliente {
 
     void mostrarInformacao() {
         System.out.println("Nome: " + this.nome);
-        System.out.println("Id: " + this.id);
+        System.out.println("ID: " + this.id);
         System.out.println("Email: " + this.email);
         System.out.println("Telefone: " + this.telefone);
         System.out.println("CPF: " + this.cpf);
@@ -40,20 +40,18 @@ public class Cliente {
         }
     }
 
-    void buscarCliente(Cliente cliente) {
-        System.out.println(clientes.indexOf(cliente));
-
-    }
-
     void buscarCliente(int posicao) {
         if (posicao != clientes.size()) {
-
+            System.out.println("Cliente encontrado: ");
+            clientes.get(posicao).mostrarInformacao();
+        } else {
+            System.out.println("Cliente não encontrado!!");
         }
-        System.out.println("Cliente encontrado: ");
-        clientes.get(posicao).mostrarInformacao();
+
     }
 
-    void atualizarCliente(Cliente cliente) {
+     void atualizarCliente(int id) {
+        Cliente cliente = getClientes().get(id);
         System.out.println("Digite novo nome:");
         String novoNome = leia.next();
         cliente.setNome(novoNome);

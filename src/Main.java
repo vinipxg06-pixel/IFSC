@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,14 +9,16 @@ public class Main {
         System.out.println("=================================\nVoce entrou no sistema do cinema\n=================================");
         int idCliente = 0;
         int opcao;
+        ArrayList<Cliente> clientes = new ArrayList<>();
+
         do {
             menuCinema();
             opcao = leia.nextInt();
-            switch (opcao){
+            switch (opcao) {
                 case 1:
                     menuClientes();
                     int opcaoCliente = leia.nextInt();
-                    switch (opcaoCliente){
+                    switch (opcaoCliente) {
                         case 1:
                             System.out.println("Digite o nome:");
                             String nomeCliente = leia.next();
@@ -29,19 +30,39 @@ public class Main {
                             String telefoneCliente = leia.next();
                             Cliente cliente = new Cliente(idCliente, telefoneCliente, emailCliente, cpfCliente, nomeCliente);
                             idCliente++;
-                            cliente.cadastrarCliente(cliente);
+                            clientes.add(cliente);
                             break;
                         case 2:
+                            if (clientes.size() != 0) {
+                                for (int i = 0; i < clientes.size(); i++) {
+                                    clientes.get(i).mostrarInformacao();
+                                }
+                            } else {
+                                System.out.println("Nenhum cliente cadastrado.");
+                            }
+                            break;
+                        case 3:
+                            System.out.println("Digite o ID do cliente:");
+                            int idBuscar = leia.nextInt();
+                            if (clientes.size() != 0) {
+                                clientes.get(idBuscar).buscarCliente(idBuscar);
+                            } else {
+                                System.out.println("Nenhum cliente cadastrado.");
+                            }
+                            break;
+                        case 4:
+                            System.out.println("Digite o ID do cliente:");
+                            int idAtualizar = leia.nextInt();
+                            if (clientes.size()!=0){
+                               clientes.get(idAtualizar).atualizarCliente(idAtualizar);
+                            } else {
+                                System.out.println("Nenhum cliente cadastrado.");
+                            }
+                            break;
 
                     }
             }
-        } while (opcao!=0);
-
-
-
-
-
-
+        } while (opcao != 0);
 
 
     }
