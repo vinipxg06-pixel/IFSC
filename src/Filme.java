@@ -42,14 +42,16 @@ public class Filme {
             System.out.println();
         }
     }
-
-    void buscarFilme(Filme filme) {
-        System.out.println("Filme encontrado: " + filmes.indexOf(filme));
-    }
-
     void buscarFilme(int posicao) {
-        System.out.println("Filme encontrado: " + filmes.indexOf(posicao));
+        if (posicao >= 0 && posicao < filmes.size()) {
+            System.out.println("Filme encontrado:");
+            filmes.get(posicao).mostrarInformacao();
+        } else {
+            System.out.println("Filme não encontrado!");
+        }
     }
+
+
 
     void atualizarFilme(Filme filme) {
         System.out.println("Digite o novo titulo:");

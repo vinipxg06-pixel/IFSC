@@ -7,9 +7,9 @@ public class Main {
         Scanner leia = new Scanner(System.in);
 
         System.out.println("=================================\nVoce entrou no sistema do cinema\n=================================");
-        int idCliente = 0;
-        int opcao;
+        int idCliente = 0, idFilme = 0, opcao;
         ArrayList<Cliente> clientes = new ArrayList<>();
+        ArrayList<Filme> filmes = new ArrayList<>();
 
         do {
             menuCinema();
@@ -45,7 +45,9 @@ public class Main {
                             System.out.println("Digite o ID do cliente:");
                             int idBuscar = leia.nextInt();
                             if (clientes.size() != 0) {
-                                clientes.get(idBuscar).buscarCliente(idBuscar);
+                                Cliente buscador = new Cliente(0, "", "", "", "");
+                                buscador.setClientes(clientes);
+                                buscador.buscarCliente(idBuscar);
                             } else {
                                 System.out.println("Nenhum cliente cadastrado.");
                             }
@@ -53,13 +55,63 @@ public class Main {
                         case 4:
                             System.out.println("Digite o ID do cliente:");
                             int idAtualizar = leia.nextInt();
-                            if (clientes.size()!=0){
-                               clientes.get(idAtualizar).atualizarCliente(idAtualizar);
+                            if (clientes.size() != 0) {
+                                Cliente atualizador = new Cliente(0, "", "", "", "");
+                                atualizador.setClientes(clientes);
+                                atualizador.atualizarCliente(idAtualizar);
                             } else {
                                 System.out.println("Nenhum cliente cadastrado.");
                             }
                             break;
-
+                        case 5:
+                            if (clientes.size() != 0){
+                                System.out.println("Digite o ID do cliente que deseja remover:");
+                                int idRemover = leia.nextInt();
+                                if (clientes.size() != idRemover) {
+                                    Cliente remover = new Cliente(0,"","", "", "");
+                                    remover.setClientes(clientes);
+                                    remover.removerCliente(idRemover);
+                                    System.out.println("Cliente removido!!");
+                                } else {
+                                    System.out.println("Cliente não encontrado!");
+                                }
+                            } else {
+                                System.out.println("Nenhum cliente cadastrado.");
+                            }
+                            break;
+                        default:
+                            System.out.println("Opção não encontrada! Tente novamente");
+                            break;
+                    } default:
+                    System.out.println("Opção não encontrada! Tente novamente");
+                    break;
+                case 2:
+                    menuFilmes();
+                    int opcaoFilme = leia.nextInt();
+                    switch (opcaoFilme){
+                        case 1:
+                            System.out.println("Digite o titulo do Filme:");
+                            String titulo = leia.next();
+                            System.out.println("Digite a descrição do Filme:");
+                            String descricao = leia.next();
+                            System.out.println("Digite o genero do Filme(ACAO, COMEDIA, DRAMA, TERROR, FICCAO_CIENTIFICA, ROMANCE):");
+                            Genero genero = Genero.valueOf(leia.next().toUpperCase());
+                            System.out.println("Digite a classificação do Filme(LIVRE, DEZ, DOZE, QUATORZE, DEZESSEIS, DEZOITO): ");
+                            Classificacao classificacao = Classificacao.valueOf(leia.next().toUpperCase());
+                            System.out.println("Digite o tempo do Filme(em minutos):");
+                            int duracaoEmMin = leia.nextInt();
+                            Filme novo = new Filme(idFilme,descricao,classificacao,genero,titulo,duracaoEmMin);
+                            idFilme++;
+                            filmes.add(novo);
+                            break;
+                        case 2:
+                            for (int i = 0; i < filmes.size(); i++) {
+                                filmes.get(i).mostrarInformacao();
+                            }
+                            break;
+                        case 3:
+                            System.out.println("Digite o ID do Filme que deseja buscar:");
+                            int idBuscar = leia.nextInt();
                     }
             }
         } while (opcao != 0);

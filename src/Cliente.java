@@ -11,7 +11,7 @@ public class Cliente {
     private String cpf;
     private String email;
     private String telefone;
-
+    private ArrayList<Cliente> clientes;
 
     public Cliente(int id, String telefone, String email, String cpf, String nome) {
         this.id = id;
@@ -41,13 +41,12 @@ public class Cliente {
     }
 
     void buscarCliente(int posicao) {
-        if (posicao != clientes.size()) {
-            System.out.println("Cliente encontrado: ");
+        if (posicao >= 0 && posicao < clientes.size()) {
+            System.out.println("Cliente encontrado:");
             clientes.get(posicao).mostrarInformacao();
         } else {
-            System.out.println("Cliente não encontrado!!");
+            System.out.println("Cliente não encontrado!");
         }
-
     }
 
      void atualizarCliente(int id) {
