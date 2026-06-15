@@ -137,4 +137,12 @@ public class Sessao {
     public void setFilme(Filme filme) {
         this.filme = filme;
     }
+
+    public ArrayList<Sessao> getSessaos() {
+        return sessaos;
+    }
+
+    public void setSessaos(ArrayList<Sessao> sessaos) {
+        this.sessaos = sessaos;
+    }
 }

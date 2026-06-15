@@ -53,25 +53,28 @@ public class Filme {
 
 
 
-    void atualizarFilme(Filme filme) {
+    Filme atualizarFilme(int id) {
         System.out.println("Digite o novo titulo:");
-        String novoTitulo = leia.next();
-        filme.setTitulo(novoTitulo);
+        String novoTitulo = leia.nextLine();
         System.out.println("Digite o novo gênero (Ex: ACAO, DRAMA, TERROR):");
-        String novoGenero = leia.next().toUpperCase();
-        filme.setGenero(Genero.valueOf(novoGenero));
+        Genero novoGenero = null;
+        String novoGenero2 = leia.nextLine().trim().toUpperCase(); // .trim() remove espaços extras
+        novoGenero = Genero.valueOf(novoGenero2);
         System.out.println("Digite a nova classificação (Ex: LIVRE, DEZ, DEZOITO):");
-        String novaClassificacaoStr = leia.next().toUpperCase();
-        filme.setClassificacao(Classificacao.valueOf(novaClassificacaoStr));
+        Classificacao novaClassificacao = null;
+        String novaClassificacao2 = leia.nextLine().trim().toUpperCase();
+        novaClassificacao = Classificacao.valueOf(novaClassificacao2);
         System.out.println("Digite a nova duração em minutos:");
         int novaDuracao = leia.nextInt();
-        filme.setDuracaoEmMinutos(novaDuracao);
+        // 2. Limpeza de buffer obrigatória após ler um número (nextInt)
+        leia.nextLine();
         System.out.println("Digite a nova descrição:");
         String novaDescricao = leia.nextLine();
-        filme.setDescricao(novaDescricao);
         System.out.println("Filme atualizado com sucesso!!");
-        filme.mostrarInformacao();
+        Filme atualizado = new Filme(id, novaDescricao, novaClassificacao, novoGenero, novoTitulo, novaDuracao);
+        return atualizado;
     }
+
 
     void removerFilme(Filme filme) {
         filmes.remove(filme);
@@ -136,5 +139,9 @@ public class Filme {
 
     public void setClassificacao(Classificacao classificacao) {
         this.classificacao = classificacao;
+    }
+
+    public int getId() {
+        return id;
     }
 }
