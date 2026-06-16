@@ -45,12 +45,8 @@ public class Sessao {
         }
     }
 
-    void buscarSessao(Sessao sessao){
-        System.out.println("Sessão encontrada" + sessaos.indexOf(sessao));
-    }
-
     void buscarSessao(int posicao){
-        System.out.println("Sessão encontrada" + sessaos.get(posicao));
+        sessaos.get(posicao).mostrarInformacao();
     }
 
     void atualizarSessao(Sessao sessao){

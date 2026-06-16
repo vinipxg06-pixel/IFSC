@@ -1,12 +1,16 @@
 public class IngressoMeia extends Ingresso {
 
-    @Override
-    public double calcularPreco(double valoBase) {
-        return (valoBase-valoBase*0.5);
+    public IngressoMeia(int id, Cliente cliente, Sessao sessao, double valorBase) {
+        super(id, cliente, sessao, valorBase);
     }
 
     @Override
-    public void exibirResumo() {
-        exibirResumo();
+    public double calcularPreco() {
+        return getValorBase() * 0.5;
+    }
+
+    @Override
+    public void mostrarInformacao() {
+        super.mostrarInformacao();
     }
 }

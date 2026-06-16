@@ -1,17 +1,23 @@
 public abstract class Ingresso {
-
     private int id;
     private Cliente cliente;
     private Sessao sessao;
     private double valorBase;
 
-    public abstract double calcularPreco(double valorBase);
+    public abstract double calcularPreco();
 
-    public void exibirResumo(){
+    public Ingresso(int id, Cliente cliente, Sessao sessao, double valorBase) {
+        this.id = id;
+        this.cliente = cliente;
+        this.sessao = sessao;
+        this.valorBase = valorBase;
+    }
+
+    public void mostrarInformacao() {
         System.out.println("Id: " + this.id);
         System.out.println("Cliente: " + this.cliente.getNome());
-        System.out.println("Sessão: " + this.sessao.getFilme());
-        System.out.println("Preço: " + this.valorBase);
+        System.out.println("Sessão: " + this.sessao.getFilme().getTitulo());
+        System.out.println("Preço Final: " + this.calcularPreco());
     }
 
     public int getId() {

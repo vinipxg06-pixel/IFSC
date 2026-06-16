@@ -1,14 +1,16 @@
 public class IngressoInteira extends Ingresso {
 
-    @Override
-    public double calcularPreco(double valoBase) {
-        return valoBase;
+    public IngressoInteira(int id, Cliente cliente, Sessao sessao, double valorBase) {
+        super(id, cliente, sessao, valorBase);
     }
 
     @Override
-    public void exibirResumo() {
-          exibirResumo();
+    public double calcularPreco() {
+        return getValorBase();
     }
 
-
+    @Override
+    public void mostrarInformacao() {
+        super.mostrarInformacao();
+    }
 }
